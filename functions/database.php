@@ -20,17 +20,26 @@
 		dbClose($conn);
 		return $data;
 	}
+
 	#Função para executar querys no banco
-	function dbExecute($query){
+	function dbExecute($query) {
 		$conn = dbConnect();
-		$result = @mysqli_query($conn, $query) or die("Falha ao tentar executar query: ".@mysqli_error($conn));
+		try {
+			$result = mysqli_query($conn, $query);
+			if (!$result) {
+				throw new Exception(mysqli_error($conn), mysqli_errno($conn));
+			}
+		} catch (Exception $e) {
+			//printf("Erro ao tentar executar a query: (%d) %s", $e->getCode(), $e->getMessage());
+			$result = false;
+		}
 		dbClose($conn);
-		return $result;
+		return array($result, $e->getCode(), $e->getMessage());
 	}
+	
 	#deletar registros
 	function dbDelete($table, $where){
 		$link = dbConnect();
-		//$table = DB_PREFIX.'_'.$table;	//colocando o prefixo da tabela
 		$where = ($where) ? "WHERE {$where}" : null;
 		$query = "DELETE FROM {$table} {$where}";
 		return DBExecute($query);
@@ -39,7 +48,6 @@
 	#Altera registro
 	function dbUpdate($table, array $data, $where = null){
 		$link = dbConnect();
-		//$table = DB_PREFIX.'_'.$table;	//colocando o prefixo da tabela
 		$where = ($where) ? "WHERE {$where}" : null;
 		$data = dbEscape($data); //protegendo contra SQL Injection
 			foreach ($data as $key => $value) {
@@ -54,7 +62,6 @@
 	#Função para inserir dados no banco
 	function dbCreate($table, array $data){
 		$conn = dbConnect(); //abrindo conexão
-		//$table = DB_PREFIX."_".$table; //colocando prefixo na tabela
 		$data = dbEscape($data); //protegendo query contra sql injection
 		$fields = implode(', ', array_keys($data)); //quebrando as chaves do array com vírgulas
 		$values = "'".implode("', '", $data)."'"; //quebrando os valores do array com vírgulas
@@ -65,30 +72,17 @@
 	#Função para ler registros do banco
 	function dbRead($table, $params = null, $fields = "*"){
 		$conn = dbConnect(); //abrindo conexão
-		//$table = DB_PREFIX."_".$table; //add prefixo na tabela
 		$query = "SELECT {$fields} FROM {$table} {$params}";
 		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
+			if(!mysqli_num_rows($result[0])){
 				return false;
 			} else {
-				while ($res = mysqli_fetch_assoc($result)) {
+				while ($res = mysqli_fetch_assoc($result[0])) {
 					$data[] = $res;
 				}
 			}
-
 		dbClose($conn); //fechando conexão
 		return $data;
-	}
-
-	#retorna o valor do próximo id
-	function dbId(){
-		$conn = dbConnect();
-	 	$query = "SHOW TABLE STATUS LIKE 'cliente'";
-	    //lista informações da tabela entidade (estrutura), uma delas refere-se ao proximo auto_increment
-	    $tabela_entidade = dbExecute($query);
-	    $proximo_id = mysqli_fetch_assoc($tabela_entidade)['Auto_increment'];
-		dbClose($conn); //fechando conexão
-		return $proximo_id;
 	}
 	
 	#conta a quantidade de registros na tabela
@@ -97,73 +91,12 @@
 		//$table = DB_PREFIX."_".$table; //add prefixo na tabela
 		$query = "SELECT * FROM {$table} {$params}";
 		$result = dbExecute($query);
-		$count = mysqli_num_rows($result);
+		$count = mysqli_num_rows($result[0]);
 			if($count <1){
 				$count = 0;
 			}
 		dbClose($conn);
 		return $count;
-	}
-	function ifExistsCard($titulo){
-		$conn = dbConnect(); //abrindo conexão
-		$query = "SELECT * FROM cards WHERE titulo = '{$titulo}'";
-		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
-				return true;
-			} else {
-				return false;
-			}
-		dbClose($conn);
-	}
-	function ifExistsUser($usuario, $table){
-		$conn = dbConnect(); //abrindo conexão
-		$query = "SELECT * FROM " . $table . " WHERE usuario = '". $usuario . "'";
-		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
-				return true;
-			} else {
-				return false;
-			}
-		dbClose($conn);
-	}
-	function ifExistsCliente($usuario, $table){
-		$conn = dbConnect(); //abrindo conexão
-		$query = "SELECT * FROM " . $table . " WHERE email = '". $usuario . "'";
-		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
-				return true;
-			} else {
-				return false;
-			}
-		dbClose($conn);
-	}
-	function ifExists($campo, $value, $table){
-		$conn = dbConnect(); //abrindo conexão
-		$query = "SELECT * FROM " . $table . " WHERE ".$campo." = '". $value . "'";
-		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
-				return true;
-			} else {
-				return false;
-			}
-		dbClose($conn);
-	}
-	function ifExistsHorario($hora, $servico){
-		$conn = dbConnect(); //abrindo conexão
-		$query = "SELECT * FROM horario WHERE  HORA = '{$hora}' AND FK_SERVICO = '{$servico}'";
-		$result = dbExecute($query);
-			if(!mysqli_num_rows($result)){
-				return true;
-			} else {
-				return false;
-			}
-		dbClose($conn);
-	}
-	function lastId(){
-		$conn = dbConnect(); 
-		$id = mysqli_insert_id($conn);
-		dbClose($conn);
-		return $id;
 	}
 
 ?>

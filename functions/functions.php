@@ -1,5 +1,4 @@
 <?php
-
 /*******************************************************************************************
  *	Esse arquivo contém as principais funções desse sistema. Além das funções, também há a *
  *	inicialização das sessões															   *
@@ -7,32 +6,31 @@
 
 
 //--------------------------Iniciando sessão--------------------------------
-	//verificando status da sessão (se ela já foi iniciada e talz)
-	if(session_status() !== PHP_SESSION_ACTIVE){
-		session_cache_expire(1440); //tempo de duração da sessão em minutos
-		session_start();
-	}
+//verificando status da sessão (se ela já foi iniciada)
+if(session_status() !== PHP_SESSION_ACTIVE){
+	session_cache_expire(1440); //tempo de duração da sessão em minutos
+	session_start();
+}
 //--------------------------/Iniciando sessão-------------------------------
 
-//Funções Genéricas do Sistema --- Podem ser utilizadas em outros sistemas
-
-	#função pra carregar includes
-	// function carregaIncludes($pasta, $includes){
-	// 	if(is_array($includes)){
-	// 		if(!empty($includes)){
-	// 			foreach ($includes as $value) {
-	// 				include_once "$pasta/$value.php";
-	// 			}
-	// 		}
-	// 	}
-	// }
+	#Função que monta o script das flash mensagens
+	function notify($mensagem, $tipo, $tempo = null, $icon = null) {
+		/* Função para notificações
+		$message = Mensagem a ser exibida
+		$type = Tipo de notificação (success, info, warning, danger)
+		$time = Tempo de exibição da notificação (milisegundos) */
+		return '<script>notify("' . $mensagem . '", "' . $tipo . '", ' . $tempo . ', "' . $icon . '");</script>';
+	}
 
 	#Função que monta a estrutura das flash mensagens
-	function flash($key, $mensagem, $tipo = "danger"){
+	function flash($key, $mensagem, $tipo, $tempo = 5000, $icon = 'info-circle'){
+		//alerts: alert-primary	alert-secondary alert-success alert-danger alert-warning alert-info alert-light alert-dark
+		//Icons:  star collection check-circle exclamation-triangle info-circle folder
 		if(!isset($_SESSION['flash'][$key])){
-			$_SESSION['flash'][$key] = '<div class="alert alert-'.$tipo.' text-center">'.$mensagem.'</div>';
+			$_SESSION['flash'][$key] = '<script>notify("' . $mensagem . '", "' . $tipo . '", ' . $tempo . ', "' . $icon . '");</script>';
 		}
 	}
+	
 	#Função pra exibir as flash mensagens
 	function getFlash($key){
 		if(isset($_SESSION['flash'][$key])){

@@ -320,6 +320,147 @@
 })();
 
 
+// Notificações 
+
+function notify(mensagem, tipo, tempo, icon){
+    
+  // se houver outro alert desse sendo exibido, cancela essa requisição
+  if($("#message").is(":visible")){
+      return false;
+  }
+
+  if(!icon){
+  //Tipos de icones:
+  //star
+  //collection
+  //check-circle
+  //exclamation-triangle
+  //info-circle
+  //folder
+    var icon = "info-circle";
+  } 
+
+  // se não setar o tempo, o padrão é 5 segundos
+  if(!tempo){
+      var tempo = 5000;
+  }
+
+  // se não setar o tipo, o padrão é alert-info
+  if(!tipo){
+      var tipo = "info";
+  }
+
+  // monta o css da mensagem para que fique flutuando na frente de todos elementos da página
+  var cssMessage = "display: block; position: fixed; top: 9%; left: 27.5%; right: 27.5%; width: 45%; padding-top: 10px; z-index: 9999";
+  var cssInner = "margin: 0 auto; box-shadow: 1px 1px 3px blue;";
+
+  //Tipos de alertas:
+  //alert-primary
+  //alert-secondary
+  //alert-success
+  //alert-danger
+  //alert-warning
+  //alert-info
+  //alert-light
+  //alert-dark
+
+  var dialogo = "";
+      dialogo += '<div id="message" style="'+cssMessage+'">';
+      dialogo += ' <div class="alert alert-'+tipo+' alert-dismissible fade show" role="alert" >'
+      dialogo += '<i class="bi bi-'+icon+' me-1"></i>'
+      dialogo +=    mensagem;
+      dialogo += '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+      dialogo += ' </div>'
+      dialogo += '</div>';
+
+  // adiciona ao body a mensagem com o efeito de fade
+  $("body").append(dialogo);
+  $("#message").hide();
+  $("#message").fadeIn(200);
+
+  // contador de tempo para a mensagem sumir
+  setTimeout(function() {
+      $('#message').fadeOut(300, function(){
+          $(this).remove();
+      });
+  }, tempo); // milliseconds
+
+}
+
+//Confirmar exclusão 
+
+function excluirAluno(x){
+  var resultado = confirm("Confirmar a exclusão do aluno?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/alunoapagar.php?cpf=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function excluirInstrutor(x){
+  var resultado = confirm("Confirmar a exclusão do instrutor?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/instrutorapagar.php?cpf=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function excluirEmpresa(x){
+  var resultado = confirm("Confirmar a exclusão da empresa?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/empresaapagar.php?cnpj=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function excluirCurso(x){
+  var resultado = confirm("Confirmar a exclusão do curso?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/cursoapagar.php?id=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function excluirTurma(x){
+  var resultado = confirm("Confirmar a exclusão da turma?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/turmaapagar.php?codturma=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function excluirMatricula(x){
+  var resultado = confirm("Confirmar a exclusão da matricula?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/matriculaapagar.php?id=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function pagarMatricula(x){
+  var resultado = confirm("O Aluno realizou o pagamento da matrícula?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/matriculaeditar.php?id=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
+function fecharTurma(x){
+  var resultado = confirm("Tem certeza que deseja encerrar a turma e emitir os certificados?");
+  if (resultado == true){
+      var link = "/SistemaGerar/php/turmaencerrar.php?id=";
+      link = link.concat(x);
+      window.location.href = link;
+  }
+}
+
 // Máscara para formulário
 
 $('#telefone').mask('(00) 000000000');
