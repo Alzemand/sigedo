@@ -11,7 +11,7 @@ require_once 'functions/config.php';
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="<?=RAIZ;?>assets/img/logo.png" alt="">
+        <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Sigedo</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -126,7 +126,7 @@ require_once 'functions/config.php';
 
             <li class="message-item">
               <a href="#">
-                <img src="<?=RAIZ;?>assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>Maria Hudson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -140,7 +140,7 @@ require_once 'functions/config.php';
 
             <li class="message-item">
               <a href="#">
-                <img src="<?=RAIZ?>assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>Anna Nelson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -154,7 +154,7 @@ require_once 'functions/config.php';
 
             <li class="message-item">
               <a href="#">
-                <img src="<?=RAIZ?>assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>David Muldon</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -177,7 +177,7 @@ require_once 'functions/config.php';
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?=RAIZ?>assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
