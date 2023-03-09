@@ -4,6 +4,10 @@
 <?php
 
 require_once 'functions/functions.php';
+require_once 'functions/validador.php';
+
+$aluno = $_SESSION['aluno'];
+unset($_SESSION['aluno']);
 
 $title = 'Cadastrar Aluno';
 include('head.php');
@@ -76,10 +80,10 @@ include('header.php');
               
 
               <!-- Floating Labels Form -->
-              <form method="POST" action="functions/entities/alunocriar.php" class="row g-3 needs-validation" novalidate>
+              <form id="aluno_form" method="POST" action="functions/entities/alunocriar.php" class="row g-3 needs-validation" novalidate>
                 <div class="col-md-12">
                   <div class="form-floating">
-                    <input name="nome" value="<?=$nome?>" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                    <input name="nome" value="<?=$aluno['nome']?>" type="text" class="form-control" id="nome" placeholder="Nome" required>
                     <div class="valid-feedback">
                       Campo preenchido.
                     </div>
@@ -91,7 +95,7 @@ include('header.php');
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input name="cpf" value="<?=$cpf?>" type="text" class="form-control" id="cpf" placeholder="CPF" required>
+                    <input name="cpf" value="<?=$aluno['cpf']?>" type="text" class="form-control" id="cpf" placeholder="CPF" required>
                     
                     <div class="valid-feedback">
                       Campo preenchido.
@@ -104,26 +108,26 @@ include('header.php');
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input name="rg" value="<?=$rg?>" type="text" class="form-control" placeholder="Identidade">
+                    <input name="rg" value="<?=$aluno['identidade']?>" type="text" class="form-control" placeholder="Identidade">
                     <label for="identidade">Identidade</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input name="periodo" value="<?=$periodo?>" type="number" class="form-control"  placeholder="Periodo" required>
+                    <input name="periodo" value="<?=$aluno['periodo']?>" type="number" class="form-control"  placeholder="Periodo" required>
                     <label for="periodo">Periodo</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input name="curso" value="<?=$curso?>" type="text" class="form-control" placeholder="Curso" required>
+                    <input name="curso" value="<?=$aluno['curso']?>" type="text" class="form-control" placeholder="Curso" required>
                     <label for="curso">Curso</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
                     <select name="estado_civil" class="form-select" id="floatingSelect" aria-label="Estado civil">
-                      <option selected="<?=$estado_civil?>"><?=empty($estado_civil) ? 'Selecione' : $estado_civil;?></option>
+                      <option selected="<?=$aluno['civil']?>"><?=empty($aluno['civil']) ? 'Selecione' : $aluno['civil'];?></option>
                       <option value="solteiro">Solteiro</option>
                       <option value="casado">Casado</option>
                       <option value="viuvo">Viúvo</option>
@@ -133,26 +137,26 @@ include('header.php');
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input name="data_nascimento" value="<?=$data_nascimento?>" type="date" class="form-control" id="date" placeholder="Data nascimento">
+                    <input name="data_nascimento" value="<?=$aluno['data_nascimento']?>" type="date" class="form-control" id="date" placeholder="Data nascimento">
                     <label for="data_nascimento">Data nascimento</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating">
-                    <input name="email" value="<?=$email?>" type="email" class="form-control" id="email" placeholder="Email" required>
+                    <input name="email" value="<?=$aluno['email']?>" type="email" class="form-control" id="email" placeholder="Email" required>
                     <label for="email">Email</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <textarea name="endereco" value="<?=$email?>" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
+                    <textarea name="endereco" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"><?=$aluno['endereco']?></textarea>
                     <label for="endereco">Endereço</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-12">
                     <div class="form-floating">
-                      <input name="telefone" value="<?=$telefone?>" type="text" class="form-control" id="telefone" placeholder="Telefone">
+                      <input name="telefone" value="<?=$aluno['telefone']?>" type="text" class="form-control" id="telefone" placeholder="Telefone">
                       <label for="telefone">Telefone</label>
                     </div>
                   </div>
@@ -160,13 +164,14 @@ include('header.php');
                 <div class="col-md-6">
                   <div class="col-md-12">
                     <div class="form-floating">
-                      <input name="matricula" value="<?=$matricula?>" type="text" class="form-control" id="matricula" placeholder="Matrícula">
+                      <input name="matricula" value="<?=$aluno['matricula']?>" type="text" class="form-control" id="matricula" placeholder="Matrícula">
                       <label for="matricula">Matrícula</label>
                     </div>
                   </div>
                 </div>
                 <div class="text-right">
-                  <button type="reset" action='alert' class="btn btn-secondary">Reset</button>
+                  <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+                  <a href="index.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
                   <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
               </form><!-- End floating Labels Form -->

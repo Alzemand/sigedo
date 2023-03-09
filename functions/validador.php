@@ -16,7 +16,7 @@ function validaCampo($campo = null) {
         }
     }
 
-function mascara($val, $mask)
+function mask($val, $mask)
 {
     /* Função "Máscara de qualquer coisa"
     http://blog.clares.com.br/php-mascara-cnpj-cpf-data-e-qualquer-outra-coisa/ */

@@ -19,8 +19,5 @@
 
 /* Constantes de Configuração do Site */
 
-//Caso a pasta esteja na raiz do servidor
-	//define('RAIZ', '/sigedo/');
-	define('RAIZ', '');
 	define('TITLE', 'Sigedo');
 ?>

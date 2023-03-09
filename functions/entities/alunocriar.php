@@ -38,15 +38,15 @@ $dados = [
 
 ];
 
-$sql = dbCreate("aluno", $dados);
-
 if (validaCPF($cpf) == true) {
+    $sql = dbCreate("aluno", $dados);
     if ($sql[0]) {
         flash("mensagem", "Aluno cadastrado com sucesso!", "success");
-        header("location: ../../aluno_cadastrar.php?get_cpf=cadastrado");
+        header("location: ../../aluno_cadastrar.php?vetor=");
     }elseif ($sql[1] == 1062) {
-        flash("mensagem", "CPF duplicado", "danger");
-        header("location: ../../aluno_cadastrar.php?get_cpf=duplicado");
+        flash("mensagem", "O CPF: $cpf Já está cadastrado no sistema", "danger", "exclamation-octagon");
+        $_SESSION['aluno'] = $dados;
+        header("location: ../../aluno_cadastrar.php?vetor=");
     }
     else {
         printf("Erro ao tentar executar a query: (%d) %s", $sql[1], $sql[2]);

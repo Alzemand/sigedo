@@ -351,7 +351,7 @@ function notify(mensagem, tipo, tempo, icon){
   }
 
   // monta o css da mensagem para que fique flutuando na frente de todos elementos da página
-  var cssMessage = "display: block; position: fixed; top: 9%; left: 27.5%; right: 27.5%; width: 45%; padding-top: 10px; z-index: 9999";
+  var cssMessage = "display: block; position: fixed; top: 9%; left: 70%; right: 5%; width: 25%; padding-top: 10px; z-index: 9999";
   var cssInner = "margin: 0 auto; box-shadow: 1px 1px 3px blue;";
 
   //Tipos de alertas:

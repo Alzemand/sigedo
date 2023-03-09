@@ -1,37 +1,54 @@
-
 <?php
 
-//--------------------------Iniciando sessão--------------------------------
-//verificando status da sessão (se ela já foi iniciada e talz)
-if(session_status() !== PHP_SESSION_ACTIVE){
-    session_cache_expire(1440); //tempo de duração da sessão em minutos
-    session_start();
-}
-
-#Função que monta a estrutura das flash mensagens
-function flash($key, $mensagem, $tipo = "danger"){
-    if(!isset($_SESSION['flash'][$key])){
-        $_SESSION['flash'][$key] = '<div class="alert alert-'.$tipo.' text-center">'.$mensagem.'</div>';
-    }
-}
-#Função pra exibir as flash mensagens
-function getFlash($key){
-    if(isset($_SESSION['flash'][$key])){
-        $mensagem = $_SESSION['flash'][$key];
-        unset($_SESSION['flash'][$key]);
-        if(isset($mensagem)){
-            return $mensagem;
-        } else {
-            return '';
-        }
-    }
-}
+require_once 'functions/functions.php';
 
 
-flash("mensagem", "O usuário informado não existe!", "danger");
 
+$cpf = '14923271744';
+$rg = '2112221';
+$nome = 'edilson';
+$periodo = '1';
+$curso = 'SI';
+$estado_civil = 'solteiro';
+$data_nascimento = '1995-01-16';
+$email = 'alzemand@Outlook.com';
+$endereco = 'rua';
+$telefone = '229922';
+$matricula = 'ola';
 
-echo (getFlash("mensagem"));
+$dados = [
 
-echo('pass');
+    'cpf' => $cpf,
+    'identidade' => $rg,
+    'matricula' => $matricula,
+    'nome' => $nome,
+    'civil' => $estado_civil,
+    'data_nascimento' => $data_nascimento,
+    'curso' => $curso,
+    'periodo' => $periodo,
+    'endereco' => $endereco,
+    'email' => $email,
+    'telefone' => $telefone,
+    'is_active' => 1
+
+];
+
+$_SESSION['aluno'] = $dados;
+
+$aluno = $_SESSION['aluno'];
+unset($_SESSION['aluno']);
+
+echo ($aluno['cpf']);
+echo ($aluno[1]);
+echo ($aluno[2]);
+echo ($aluno[3]);
+echo ($aluno[4]);
+echo ($aluno[5]);
+echo ($aluno[6]);
+echo ($aluno[7]);
+echo ($aluno[8]);
+echo ($aluno[9]);
+echo ($aluno[10]);
+echo ($aluno[11]);
+
 ?>
