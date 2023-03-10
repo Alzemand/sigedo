@@ -1,4 +1,6 @@
 <?php
+require_once 'config.php';
+
 	#abrindo conexão
 	function dbConnect(){
 		//conexão

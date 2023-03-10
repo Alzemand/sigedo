@@ -38,24 +38,14 @@ $dados = [
 
 ];
 
-if (validaCPF($cpf) == true) {
-    $sql = dbCreate("aluno", $dados);
-    if ($sql[0]) {
-        flash("mensagem", "O Aluno: " . $nome . " foi cadastrado com sucesso!", "success", "check-circle");
-        header("location: ../../aluno_cadastrar.php");
-    }elseif ($sql[1] == 1062) {
-        flash("mensagem", "O CPF:" . mask($cpf, '###.###.###-##') . " Já está cadastrado no sistema.", "danger", "exclamation-octagon");
-        $_SESSION['aluno'] = $dados;
-        header("location: ../../aluno_cadastrar.php?");
-    }
-    else {
-        printf("Erro ao tentar executar a query: (%d) %s", $sql[1], $sql[2]);
-    }
-} 
+$sql = dbUpdate("aluno", $dados, "cpf = '$cpf'");
+
+if ($sql[0]) {
+    flash("mensagem", "O Aluno " . $nome . " foi atualizado com sucesso!", "success", "check-circle");
+    header("location: ../../aluno_visualizar.php?cpf=$cpf");
+}
 else {
-    flash("mensagem", "O CPF:" . mask($cpf, '###.###.###-##') . " é inválido.", "danger", "exclamation-octagon");
-    $_SESSION['aluno'] = $dados;
-    header("location: ../../aluno_cadastrar.php");;
+    printf("Erro ao tentar executar a query: (%d) %s", $sql[1], $sql[2]);
 }
 
 ?>

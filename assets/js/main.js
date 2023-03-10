@@ -392,74 +392,12 @@ function notify(mensagem, tipo, tempo, icon){
 function excluirAluno(x){
   var resultado = confirm("Confirmar a exclusão do aluno?");
   if (resultado == true){
-      var link = "/SistemaGerar/php/alunoapagar.php?cpf=";
+      var link = "functions/entities/alunoapagar.php?cpf=";
       link = link.concat(x);
       window.location.href = link;
   }
 }
 
-function excluirInstrutor(x){
-  var resultado = confirm("Confirmar a exclusão do instrutor?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/instrutorapagar.php?cpf=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function excluirEmpresa(x){
-  var resultado = confirm("Confirmar a exclusão da empresa?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/empresaapagar.php?cnpj=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function excluirCurso(x){
-  var resultado = confirm("Confirmar a exclusão do curso?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/cursoapagar.php?id=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function excluirTurma(x){
-  var resultado = confirm("Confirmar a exclusão da turma?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/turmaapagar.php?codturma=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function excluirMatricula(x){
-  var resultado = confirm("Confirmar a exclusão da matricula?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/matriculaapagar.php?id=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function pagarMatricula(x){
-  var resultado = confirm("O Aluno realizou o pagamento da matrícula?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/matriculaeditar.php?id=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
-
-function fecharTurma(x){
-  var resultado = confirm("Tem certeza que deseja encerrar a turma e emitir os certificados?");
-  if (resultado == true){
-      var link = "/SistemaGerar/php/turmaencerrar.php?id=";
-      link = link.concat(x);
-      window.location.href = link;
-  }
-}
 
 // Máscara para formulário
 

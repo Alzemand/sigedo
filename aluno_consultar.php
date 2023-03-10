@@ -40,7 +40,7 @@ include('header.php');
             </a>
           </li>
           <li>
-            <a href="aluno.consultar" class="active">
+            <a href="aluno_consultar.php" class="active">
               <i class="bi bi-circle"></i><span>Consultar</span>
             </a>
           </li>
@@ -122,9 +122,9 @@ include('header.php');
                     <td><?=$aluno['matricula']?></td>
                     <td><?=$aluno['curso']?></td>
                     <td>
-                    <a class="btn btn-primary" href="" role="button" ><i class="bi bi-search" title="Visualizar informações completas" aria-hidden="true"></i></a>
-                      <a class="btn btn-primary" href="" role="button"><i class="bi bi-pencil" title="Editar dados" aria-hidden="true"></i></a>
-                      <a class="btn btn-danger" href="#" onclick="" role="button"><i class="bi bi-trash" title="Apagar" aria-hidden="true"></i></a>
+                    <a class="btn btn-primary" href="aluno_visualizar.php?cpf=<?=$aluno['cpf']?>" role="button" ><i class="bi bi-search" title="Visualizar informações completas" aria-hidden="true"></i></a>
+                      <a class="btn btn-primary" href="aluno_editar.php?cpf=<?=$aluno['cpf']?>" role="button"><i class="bi bi-pencil" title="Editar dados" aria-hidden="true"></i></a>
+                      <a class="btn btn-danger" href="#" onclick="excluirAluno(<?=$aluno['cpf']?>)" role="button"><i class="bi bi-trash" title="Apagar" aria-hidden="true"></i></a>
                     </td>
                   </tr>
                   <?php $cont++; ?>
