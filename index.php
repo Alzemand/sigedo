@@ -33,7 +33,7 @@ include('header.php');
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="aluno_consultar.php">
               <i class="bi bi-circle"></i><span>Consultar</span>
             </a>
           </li>

@@ -368,7 +368,7 @@ function notify(mensagem, tipo, tempo, icon){
       dialogo += '<div id="message" style="'+cssMessage+'">';
       dialogo += ' <div class="alert alert-'+tipo+' alert-dismissible fade show" role="alert" >'
       dialogo += '<i class="bi bi-'+icon+' me-1"></i>'
-      dialogo +=    mensagem;
+      dialogo +=  " " +  mensagem;
       dialogo += '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
       dialogo += ' </div>'
       dialogo += '</div>';

@@ -24,7 +24,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 
 	#Função que monta a estrutura das flash mensagens
 	function flash($key, $mensagem, $tipo, $icon = 'info-circle', $tempo = 5000){
-		//alerts: alert-primary	alert-secondary alert-success alert-danger alert-warning alert-info alert-light alert-dark
+		//alerts: primary secondary success danger warning info light dark
 		//Icons:  star collection check-circle exclamation-triangle exclamation-octagon info-circle folder
 		if(!isset($_SESSION['flash'][$key])){
 			$_SESSION['flash'][$key] = '<script>notify("' . $mensagem . '", "' . $tipo . '", ' . $tempo . ', "' . $icon . '");</script>';

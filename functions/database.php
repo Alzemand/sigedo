@@ -1,5 +1,6 @@
 <?php
 
+require_once('conexao.php');
 /*******************************************************************************
  *	Esse arquivo contém as funções genéricas pra manipulação do banco de dados.*
  *******************************************************************************/
@@ -34,7 +35,9 @@
 			$result = false;
 		}
 		dbClose($conn);
-		return array($result, $e->getCode(), $e->getMessage());
+		$code = isset($e) ? $e->getCode() : null;
+		$message = isset($e) ? $e->getMessage() : null;
+		return array($result, $code, $message);
 	}
 	
 	#deletar registros
