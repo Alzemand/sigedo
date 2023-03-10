@@ -74,7 +74,7 @@ include('header.php');
 
         <div class="card">
             <div class="card-body">
-              <div class="text-center"><h1 style="padding: 0px; margin-top: 20px; color: #012970;"><i class="bi bi-person-add"></i></h1></div>
+              <div class="text-center"><h1 style="padding: 0px; margin-top: 20px; color: #012970;"><i class="bi bi-person-fill-add"></i></h1></div>
               <div class="text-center"><h5 class="card-title" style="padding: 0px; margin-bottom: 20px;">Cadastrar aluno</h5></div>
 
               
