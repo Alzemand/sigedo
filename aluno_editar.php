@@ -60,7 +60,7 @@ $aluno = dbRead("aluno", "WHERE cpf = '" . addslashes($_GET['cpf']). "'");
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Aluno</li>
-          <li class="breadcrumb-item active">Consultar (detalhes)</li>
+          <li class="breadcrumb-item active">Editar</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -75,8 +75,8 @@ $aluno = dbRead("aluno", "WHERE cpf = '" . addslashes($_GET['cpf']). "'");
 
         <div class="card">
             <div class="card-body">
-              <div class="text-center"><h1 style="padding: 0px; margin-top: 20px; color: #012970;"><i class="bi bi-person-add"></i></h1></div>
-              <div class="text-center"><h5 class="card-title" style="padding: 0px; margin-bottom: 20px;">Cadastrar aluno</h5></div>
+              <div class="text-center"><h1 style="padding: 0px; margin-top: 20px; color: #012970;"><i class="bi bi-person-fill-gear"></i></h1></div>
+              <div class="text-center"><h5 class="card-title" style="padding: 0px; margin-bottom: 20px;">Editar aluno</h5></div>
 
               
 
